@@ -1,6 +1,6 @@
 body {
-  /* background-color: black; */
-  background-image: url(/background7.jpg);
+  background-color: black;
+  /* background-image: url(/background7.jpg); */
   background-size: cover;
   height: 100vh;
   padding: 0px 10px;
