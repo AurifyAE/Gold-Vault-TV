@@ -2,12 +2,13 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Grid, Paper, Typography, Box, useMediaQuery } from "@mui/material";
 import LimitExceededModal from "../components/LimitExceededModal";
 import SpotRate from "../components/SpotRate";
-import CommodityTable from "../components/CommodityTable";
+// import CommodityTable from "../components/CommodityTable";
 import NewsTicker from "../components/News";
 import TimeDisplay from "../components/Clock";
 import goldLogo from "../assets/goldLogo.png";
-import Carousel from "../components/Carousel";
-import TradingViewWidget from "../components/TradingViewWidget";
+import MetalBarsCoins from "../components/MetalBarsCoins";
+// import Carousel from "../components/Carousel"; 
+// import TradingViewWidget from "../components/TradingViewWidget";
 import {
   fetchSpotRates,
   fetchServerURL,
@@ -192,107 +193,98 @@ function TvScreen() {
 
   return (
     <Box sx={{ minHeight: "100vh", color: "white", padding: "20px" }}>
-      <Box className="flex flex-row items-center justify-between">
-        <Box
-          className="flex flex-col items-center justify-between"
-          sx={{
-            // boxShadow: "2px 2px 10px #424242",
-            // border: "2px solid #D2AD36",
-            // padding: "1vw 1vw",
-            // borderRadius: "10px",
-            // background: "rgba(0, 0, 0, 0.1)", // Translucent black
-            // backdropFilter: "blur(5px)", // Blur effect
-            // WebkitBackdropFilter: "blur(10px)", // For Safari support
-            // color: "#FFF", // Light text color for contrast
-          }}
-        >
-          <img src={goldLogo} alt="" className="w-72 h-44" />
-        </Box>
-
-        {/* Carousel */}
-        <Carousel />
-
-        {/* Date & Time */}
-        <Box
-          className="flex flex-row justify-center items-center"
-          sx={{
-            padding: "1.5vw 2vw",
-            borderRadius: "20px",
-            boxShadow: "2px 2px 10px #424242",
-            border: "2px solid #D2AD36",
-            height: "100%",
-          }}
-        >
-          <Box>
-            <Typography
-              fontWeight="bold"
-              sx={{
-                color: "#FFF",
-                fontSize: "2.3vw",
-              }}
-            >
-              {getFormattedTimeWithoutSeconds(dateTime)}
-            </Typography>
-            <Typography
-              className="text-white font-semibold text-xl"
-              sx={{ fontSize: "1.8vw" }}
-            >
-              {day.toUpperCase()}
-            </Typography>
-            <Box className="flex flex-row">
-              <Typography
-                className="text-white font-bold mx-2"
-                sx={{ fontSize: "1.5vw", fontWeight: "600" }}
-              >
-                {date}
-              </Typography>
-              <Typography
-                className="text-white font-bold mx-2"
-                sx={{
-                  fontSize: "1.5vw",
-                  fontWeight: "600",
-                  marginLeft: "13px",
-                }}
-              >
-                {month}
-              </Typography>
-              <Typography
-                className="text-white font-bold mx-2"
-                sx={{
-                  fontSize: "1.5vw",
-                  fontWeight: "600",
-                  marginLeft: "13px",
-                }}
-              >
-                {year}
-              </Typography>
-            </Box>
-          </Box>
-        </Box>
-
-        <TimeDisplay />
-      </Box>
-
       {/* Grid */}
       <Grid
         container
-        spacing={4}
+        spacing={8}
         direction="row"
         alignItems="flex-start"
         justifyContent="space-between"
       >
-        {/* Side: Commodity Table */}
-        <Grid item xs={12} md={6}>
-          {/* Commodity Table */}
-          {/* <CommodityTable commodities={commodities} /> */}
+        {/* Side: Date Time SpotRate */}
+        <Grid item xs={12} md={8} sx={{width: "100%"}}>
+          <Box className="flex flex-col items-center justify-between w-full">
+            <Box className="flex flex-col items-center justify-between w-full">
+              <img src={goldLogo} alt="" className="w-72 h-36 mt-5 mb-5" />
+              <Box className="flex flex-row items-center justify-between mt-5 w-full">
+                <Box className="flex flex-col items-center justify-between w-full">
+                  <Box className="flex flex-row items-center justify-center w-full">
+                    <Typography
+                      fontWeight="bold"
+                      sx={{
+                        fontSize: "1.5vw",
+                        fontFamily: "Actay-Regular, sans-serif",
+                        color: "#E5D4A8",
+                      }}
+                    >
+                      {getFormattedTimeWithoutSeconds(dateTime)} |
+                    </Typography>
+                    <Typography
+                      className="text-white font-semibold text-xl"
+                      sx={{
+                        fontSize: "1.5vw",
+                        fontFamily: "Actay-Regular, sans-serif",
+                        color: "#E5D4A8",
+                        marginLeft: "8px",
+                      }}
+                    >
+                      {day.toUpperCase()}
+                    </Typography>
+                  </Box>
+                  <Box className="flex flex-row">
+                    <Typography
+                      className="text-white font-bold mx-2"
+                      sx={{
+                        fontSize: "1.5vw",
+                        fontWeight: "600",
+                        fontFamily: "Actay-Regular, sans-serif",
+                        color: "#E5D4A8",
+                      }}
+                    >
+                      {date}
+                    </Typography>
+                    <Typography
+                      className="text-white font-bold mx-2"
+                      sx={{
+                        fontSize: "1.5vw",
+                        fontWeight: "600",
+                        marginLeft: "13px",
+                        fontFamily: "Actay-Regular, sans-serif",
+                        color: "#E5D4A8",
+                        letterSpacing: "0.3rem",
+                      }}
+                    >
+                      {month}
+                    </Typography>
+                    <Typography
+                      className="text-white font-bold mx-2"
+                      sx={{
+                        fontSize: "1.5vw",
+                        fontWeight: "600",
+                        marginLeft: "13px",
+                        fontFamily: "Actay-Regular, sans-serif",
+                        color: "#E5D4A8",
+                      }}
+                    >
+                      {year}
+                    </Typography>
+                  </Box>
+                </Box>
 
-          <TradingViewWidget/>
+                {/* World Clock */}
+                <TimeDisplay />
+              </Box>
+            </Box>
+
+            {/* SpotRate Component */}
+            <SpotRate />
+          </Box>
         </Grid>
 
-        {/* Side: SpotRate */}
-        <Grid item xs={12} md={6}>
-          {/* SpotRate Component */}
-          <SpotRate />
+        {/* Side: Right */}
+        <Grid item xs={12} md={4}>
+          {/* MetalBarsCoins */}
+          <MetalBarsCoins/>
 
           {/* <Box className="flex flex-col justify-center items-center">
             <Typography sx={{ fontSize: "1.2vw", marginTop: "0px" }}>
@@ -303,7 +295,7 @@ function TvScreen() {
       </Grid>
 
       {/* News Component */}
-      <NewsTicker newsItems={news} />
+      {/* <NewsTicker newsItems={news} /> */}
 
       {/* Conditional rendering of the modal */}
       {showLimitModal && <LimitExceededModal />}

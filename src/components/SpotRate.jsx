@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import { useSpotRate } from "../context/SpotRateContext";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import gold from "../assets/gold.png";
+import silver from "../assets/silver.png";
+import goldLens from "../assets/goldLens.png";
+import silverLens from "../assets/silverLens.png";
 
 const SpotRate = () => {
   const { goldData, silverData } = useSpotRate();
@@ -25,6 +27,15 @@ const SpotRate = () => {
     return "white"; // Default color for no change
   };
 
+  const getBorderColor = (change) => {
+    if (change === "up") {
+      return "3px solid green"; // Green color for increase
+    } else if (change === "down") {
+      return "3px solid red"; // Red color for decrease
+    }
+    return "3px solid #FFFFFF"; // Default color for no change
+  };
+
   const renderSpotSection = (metal, data) => (
     <Box
       sx={{
@@ -42,34 +53,75 @@ const SpotRate = () => {
           justifyContent: "space-between",
           alignItems: "center",
           textAlign: "center",
-          boxShadow: "2px 2px 10px #424242",
-          border: "2px solid #D2AD36",
-          padding: "1vw 2vw",
+          padding: "1vw 0vw",
           borderRadius: "10px",
           width: "100%",
-          // background: "rgba(0, 0, 0, 0.2)", // Translucent black
-          // backdropFilter: "blur(5px)", // Blur effect
-          // WebkitBackdropFilter: "blur(10px)", // For Safari support
-          // color: "#FFF", // Light text color for contrast
         }}
       >
-        <Box className="flex flex-row items-center">
+        <Box
+          className="flex flex-row items-center justify-center p-5 pt-2 pb-2 relative"
+          sx={{
+            backgroundColor: metal === "gold" ? "#D6AF5B" : "#D1D1D1",
+            width: "250px",
+            position: "relative", // Enables absolute positioning for the image
+          }}
+        >
+          {/* Top Corner Image */}
+          <Box
+            component="img"
+            src={metal === "gold" ? gold : silver}
+            alt="Corner Image"
+            sx={{
+              position: "absolute",
+              top: "-30px", // Adjust to center the image on the corner
+              left: metal === "gold" ? "-25px" : "auto",
+              right: metal === "silver" ? "-35px" : "auto",
+              width: "90px", 
+              height: "90px",
+            }}
+          />
+
+          {/* Opposite Side Image */}
+          <Box
+            component="img"
+            src={metal === "gold" ? goldLens : silverLens} // Opposite image
+            alt="Opposite Image"
+            sx={{
+              position: "absolute",
+              top: "-45px", // Adjust to center at the bottom
+              right: metal === "gold" ? "-45px" : "auto",
+              left: metal === "silver" ? "-45px" : "auto",
+              width: "90px",
+              height: "90px",
+            }}
+          />
+
+          {/* Metal Name */}
           <Typography
-            sx={{ color: "#FFFFFF", fontSize: "2.1vw", fontWeight: "600" }}
+            sx={{
+              color: "#000",
+              fontSize: metal === "gold" ? "2.8vw" : "2.5vw",
+              fontWeight: "600",
+              fontFamily: "Anton-Regular, sans-serif",
+            }}
           >
             {metal.toUpperCase()}
           </Typography>
+
+          {/* OZ Text */}
           <Typography
             sx={{
-              color: "#FFFFFF",
-              fontSize: "1.2vw",
+              color: "#000",
+              fontSize: "1.5vw",
               fontWeight: "600",
+              fontFamily: "Anton-Regular, sans-serif",
               marginTop: "10px",
             }}
           >
             OZ
           </Typography>
         </Box>
+
         <Box>
           <Typography
             variant="h3"
@@ -77,14 +129,14 @@ const SpotRate = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              padding: "6px",
+              padding: "8px",
               borderRadius: "8px",
-              fontSize: "2.8vw",
-              fontWeight: "bold",
+              fontSize: "2.5vw",
+              fontFamily: "Anton-Regular, sans-serif",
               margin: "0.5vw 0",
               color: getColor(data.bidChanged),
-              backgroundColor: getBackgroundColor(data.bidChanged),
-              border: "3px solid #FFFFFF",
+              backgroundColor: "trasnparent",
+              border: getBorderColor(data.bidChanged),
               width: "12vw",
             }}
           >
@@ -96,7 +148,7 @@ const SpotRate = () => {
               alignItems: "center",
               justifyContent: "center",
               backgroundColor: "red",
-              borderRadius: "5px",
+              borderRadius: "7px",
             }}
           >
             <Typography
@@ -104,7 +156,7 @@ const SpotRate = () => {
               sx={{
                 fontSize: "1.3vw",
                 color: "white",
-                fontWeight: "bold",
+                fontFamily: "Actay-Regular, sans-serif",
                 marginLeft: "0.5vw",
               }}
             >
@@ -119,14 +171,14 @@ const SpotRate = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              padding: "6px",
+              padding: "8px",
               borderRadius: "8px",
-              fontSize: "2.8vw",
-              fontWeight: "bold",
+              fontSize: "2.5vw",
+              fontFamily: "Anton-Regular, sans-serif",
               margin: "0.5vw 0",
               color: getColor(data.askChanged),
-              backgroundColor: getBackgroundColor(data.bidChanged),
-              border: "3px solid #FFFFFF",
+              backgroundColor: "trasnparent",
+              border: getBorderColor(data.bidChanged),
               width: "12vw",
             }}
           >
@@ -138,7 +190,7 @@ const SpotRate = () => {
               alignItems: "center",
               justifyContent: "center",
               backgroundColor: "green",
-              borderRadius: "5px",
+              borderRadius: "7px",
             }}
           >
             <Typography
@@ -146,7 +198,7 @@ const SpotRate = () => {
               sx={{
                 fontSize: "1.3vw",
                 color: "white",
-                fontWeight: "bold",
+                fontFamily: "Actay-Regular, sans-serif",
                 marginLeft: "0.5vw",
               }}
             >
@@ -160,7 +212,7 @@ const SpotRate = () => {
 
   return (
     <Box
-      className="mx-auto rounded-lg text-center"
+      className="mx-auto rounded-lg text-center w-full"
       sx={{
         maxWidth: "100%",
         marginTop: "20px",
@@ -170,16 +222,15 @@ const SpotRate = () => {
         className="flex flex-row items-center justify-between w-full pl-9 pr-9 p-1 mb-4"
         sx={{
           background:
-            "linear-gradient(to right, rgba(178, 129, 44, 1) 0, rgba(244, 222, 98, 1) 28%, rgba(244, 226, 139, 1) 51%, rgba(244, 222, 98, 1) 71%, rgba(178, 129, 44, 1) 100%);",
-          borderRadius: "10px",
+            "linear-gradient(-90deg, #F0C367 0%, #BA7B31 50%, #F0C367 70%, #BB7D32 100%)",
         }}
       >
         {/* Label section */}
         <Typography
           sx={{
-            fontSize: "1.8vw",
-            fontWeight: "bold",
+            fontSize: "1.5vw",
             color: "black",
+            fontFamily: "ActayWide-Bold, sans-serif",
           }}
         >
           SPOT RATE
@@ -189,9 +240,9 @@ const SpotRate = () => {
           <Typography
             sx={{
               fontSize: "1.5vw",
-              fontWeight: "bold",
+              fontFamily: "ActayWide-Bold, sans-serif",
               color: "black",
-              marginLeft: "-200px"
+              marginLeft: "-200px",
             }}
           >
             BID
@@ -199,17 +250,29 @@ const SpotRate = () => {
           <Box
             className="flex justify-center items-center"
             sx={{
-              marginLeft: "0.5vw",
-              backgroundColor: "black",
-              width: "30px",
-              height: "30px",
+              position: "relative", // Allows absolute positioning for inner circle
+              width: "28px", // Outer circle size
+              height: "28px",
               borderRadius: "50%",
-              fontSize: "1.4vw",
-              fontWeight: "600",
-              color: "white",
+              border: "3px solid #008001", // Outer circle with border only
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginLeft: "5px",
             }}
           >
-            <i class="fa-solid fa-dollar-sign"></i>
+            {/* Inner Filled Circle */}
+            <Box
+              sx={{
+                width: "11px", // Inner circle size
+                height: "11px",
+                borderRadius: "50%",
+                backgroundColor: "#008001", // Inner circle filled with black
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            ></Box>
           </Box>
         </Box>
 
@@ -217,9 +280,9 @@ const SpotRate = () => {
           <Typography
             sx={{
               fontSize: "1.5vw",
-              fontWeight: "bold",
+              fontFamily: "ActayWide-Bold, sans-serif",
               color: "black",
-              marginLeft: "-180px"
+              marginLeft: "-180px",
             }}
           >
             ASK
@@ -227,17 +290,29 @@ const SpotRate = () => {
           <Box
             className="flex justify-center items-center"
             sx={{
-              marginLeft: "0.5vw",
-              backgroundColor: "black",
-              width: "30px",
-              height: "30px",
+              position: "relative", // Allows absolute positioning for inner circle
+              width: "28px", // Outer circle size
+              height: "28px",
               borderRadius: "50%",
-              fontSize: "1.4vw",
-              fontWeight: "600",
-              color: "white",
+              border: "3px solid #D3222A", // Outer circle with border only
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginLeft: "5px",
             }}
           >
-            <i class="fa-solid fa-dollar-sign"></i>
+            {/* Inner Filled Circle */}
+            <Box
+              sx={{
+                width: "11px", // Inner circle size
+                height: "11px",
+                borderRadius: "50%",
+                backgroundColor: "#D3222A", // Inner circle filled with black
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            ></Box>
           </Box>
         </Box>
       </Box>

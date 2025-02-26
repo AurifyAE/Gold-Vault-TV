@@ -1,7 +1,7 @@
 import { Box, Typography, Button } from "@mui/material";
 import { DesktopWindows, Block } from "@mui/icons-material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import logo from "../assets/logo.png";
+// import logo from "../assets/logo.png";
 
 const modalStyles = {
   position: "absolute",
@@ -77,7 +77,7 @@ export default function LimitExceededModal() {
         The number of allowed screens has been exceeded.
       </Typography>
       <Typography sx={textStyles}>Please contact our support team for assistance.</Typography>
-      <img src={logo} className="h-18 w-60 mt-5" />
+      {/* <img src={logo} className="h-18 w-60 mt-5" /> */}
       <Button
         sx={buttonStyles}
         startIcon={<WhatsAppIcon />}

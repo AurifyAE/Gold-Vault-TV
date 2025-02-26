@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardContent, Typography, Grid } from "@mui/material";
-import USA from "../assets/flags/usa.jpg";
-import UK from "../assets/flags/uk.jpg";
-import MALAYSIA from "../assets/flags/malaysia.jpg";
-import INDIA from "../assets/flags/india.jpg";
+import { Card, CardContent, Typography, Box } from "@mui/material";
+import USA from "../assets/flags/Us.png";
+import UK from "../assets/flags/uk.png";
+import MALAYSIA from "../assets/flags/Malaysia.png";
+import INDIA from "../assets/flags/india.png";
 
 const TimeDisplay = () => {
   const [times, setTimes] = useState({});
@@ -42,59 +42,59 @@ const TimeDisplay = () => {
   }, []);
 
   return (
-    <div className="p-1">
-      <Grid
-        container
-        spacing={2}
-        className="justify-center items-center"
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "16px",
-        }}
-      >
-        {Object.entries(timeZones).map(([region, { flag }]) => (
-          <Grid item key={region} sx={{ display: "flex", justifyContent: "center" }}>
-            <Card
+    <Box
+      className="p-4"
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        gap: "0px",
+        width: "100%",
+      }}
+    >
+      {Object.entries(timeZones).map(([region, { flag }], index, arr) => (
+        <React.Fragment key={region}>
+          {/* Flag and Time */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              width: "100%",
+              padding: "10px",
+            }}
+          >
+            {/* Flag */}
+            <img src={flag} alt={`${region} Flag`} className="w-16 h-10" />
+
+            {/* Time */}
+            <Typography
+              variant="h6"
               sx={{
-                backgroundColor: "transparent",
+                color: "#E5D4A8",
+                fontFamily: "Actay-Regular, sans-serif",
+                fontSize: "1rem",
+                marginTop: "5px",
+                marginBottom: "0px"
               }}
             >
-              <CardContent
-                className="flex flex-col items-center p-0"
-                sx={{
-                  padding: "5px !important",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  border: "2px solid #D2AD36",
-                  borderRadius: "10px",
-                  background:
-                    "linear-gradient(to right, rgba(178, 129, 44, 1) 0, rgba(244, 222, 98, 1) 28%, rgba(244, 226, 139, 1) 51%, rgba(244, 222, 98, 1) 71%, rgba(178, 129, 44, 1) 100%);",
-                  width: "6vw",
-                }}
-              >
-                <img
-                  src={flag}
-                  alt={`${region} Flag`}
-                  className="w-16 h-10 rounded-lg"
-                />
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "black",
-                    fontWeight: "600",
-                    fontSize: "1.1vw"
-                  }}
-                >
-                  {times[region] || "--:--"}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </div>
+              {times[region] || "--:--"}
+            </Typography>
+          </Box>
+
+          {/* Vertical Line Between Countries */}
+          {index < arr.length - 1 && (
+            <Box
+              sx={{
+                width: "6px",
+                height: "3.8vw",
+                backgroundColor: "#FFF",
+              }}
+            />
+          )}
+        </React.Fragment>
+      ))}
+    </Box>
   );
 };
 

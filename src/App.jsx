@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useConnectionState } from "use-connection-state";
 import { SpotRateProvider } from "./context/SpotRateContext";
 import "./App.css";
+import './assets/fonts/fonts.css'; 
 import TvScreen from "./pages/tvscreenView";
 import ErrorPage from "./components/ErrorPage";
 
