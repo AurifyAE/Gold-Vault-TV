@@ -4,7 +4,7 @@ import { useSpotRate } from "../context/SpotRateContext";
 import gold from "../assets/gold.png";
 import silver from "../assets/silver.png";
 import goldLens from "../assets/goldLens.png";
-import silverLens from "../assets/silverLens.png";
+import silverLens from "../assets/silverlens.png";
 
 const SpotRate = () => {
   const { goldData, silverData } = useSpotRate();
