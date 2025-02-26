@@ -3,7 +3,7 @@ import { Card, CardContent, Typography, Box } from "@mui/material";
 import USA from "../assets/flags/Us.png";
 import UK from "../assets/flags/uk.png";
 import MALAYSIA from "../assets/flags/Malaysia.png";
-import INDIA from "../assets/flags/india.png";
+import INDIA from "../assets/flags/India.png";
 
 const TimeDisplay = () => {
   const [times, setTimes] = useState({});
