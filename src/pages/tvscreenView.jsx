@@ -212,7 +212,7 @@ function TvScreen() {
                     <Typography
                       fontWeight="bold"
                       sx={{
-                        fontSize: "1.5vw",
+                        fontSize: "1.3vw",
                         fontFamily: "Actay-Regular, sans-serif",
                         color: "#E5D4A8",
                       }}
@@ -222,7 +222,7 @@ function TvScreen() {
                     <Typography
                       className="text-white font-semibold text-xl"
                       sx={{
-                        fontSize: "1.5vw",
+                        fontSize: "1.3vw",
                         fontFamily: "Actay-Regular, sans-serif",
                         color: "#E5D4A8",
                         marginLeft: "8px",

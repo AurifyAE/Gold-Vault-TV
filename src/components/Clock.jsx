@@ -73,9 +73,9 @@ const TimeDisplay = () => {
               sx={{
                 color: "#E5D4A8",
                 fontFamily: "Actay-Regular, sans-serif",
-                fontSize: "1rem",
+                fontSize: "1vw",
                 marginTop: "5px",
-                marginBottom: "0px"
+                minWidth: "60px",
               }}
             >
               {times[region] || "--:--"}

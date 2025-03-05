@@ -73,7 +73,7 @@ const MetalBarsCoins = () => {
   const currentPair = imagePairs[currentPairIndex];
 
   return (
-    <Box className="flex flex-col items-center justify-center mt-10">
+    <Box className="flex flex-col items-center justify-center mt-16">
       {/* Heading */}
       <Box textAlign="center">
         <Typography
@@ -103,9 +103,10 @@ const MetalBarsCoins = () => {
       {/* Flip Card Container */}
       <Box
         sx={{
-          width: "400px",
-          height: "500px",
+          width: "350px",
+          height: "450px",
           perspective: "1000px",
+          padding: "2vw 0vw"
         }}
       >
         <Box
@@ -180,7 +181,7 @@ const MetalBarsCoins = () => {
           textAlign: "center",
           marginTop: "1.9rem",
           textTransform: "uppercase",
-          marginBottom: "1rem",
+          marginBottom: "0.2rem",
           fontFamily: "Anton-Regular, sans-serif",
           fontSize: "1.2vw"
         }}
